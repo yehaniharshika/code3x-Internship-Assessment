@@ -6,13 +6,12 @@ This project is my submission for the **code3x Internship Technical & Creative A
 
 ## Technologies Used
 
-- React (18)
+- React
 - TypeScript
-- Material-UI (MUI v5) + MUI Icons
+- Material-UI + MUI Icons
 - react-hook-form + yup (form handling & validation)
 - Firebase (Authentication – Google provider)
-- React Router v6 (navigation)
-- Vite / Create React App (build tool – choose whichever you used)
+- React Router (navigation)
 
 ---
 
@@ -41,7 +40,7 @@ code3x-Internship/
 
 ## Live Demo
 
-Hosted URL: 
+Hosted URL: https://code3x.web.app/ (But not work-have technical Error)
 
 ---
 

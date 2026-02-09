@@ -52,6 +52,7 @@ const LoginForm: React.FC = () => {
     try {
       const result = await signInWithGoogle();
       const credential = GoogleAuthProvider.credentialFromResult(result);
+      console.log(credential);
       const token = await result.user.getIdToken(); 
       console.log("Google login success, token:", token);
       navigate("/token");

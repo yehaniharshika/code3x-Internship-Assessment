@@ -1,14 +1,16 @@
-import { initializeApp } from 'firebase/app';
-import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { initializeApp } from "firebase/app";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyCHARa7hf6trrMmDk5fT6Nc9m9jo8hkCVc",
-  authDomain: "authenticate-28507.firebaseapp.com",
-  projectId: "authenticate-28507",
-  storageBucket: "authenticate-28507.firebasestorage.app",
-  messagingSenderId: "447939440659",
-  appId: "1:447939440659:web:27fb78b808c42dfae68fe6",
-  measurementId: "G-NP91K3F74M"
+  apiKey: "AIzaSyBeFt8dQwB3Ow2DrsfiClzZvAxEMI96VCI",
+  authDomain: "code3x-login-yehani.firebaseapp.com",
+  projectId: "code3x-login-yehani",
+  storageBucket: "code3x-login-yehani.firebasestorage.app",
+  messagingSenderId: "128371180022",
+  appId: "1:128371180022:web:50d113b30a1c3b261347d7",
+  measurementId: "G-M67SPMJZHC",
 };
 
 const app = initializeApp(firebaseConfig);
