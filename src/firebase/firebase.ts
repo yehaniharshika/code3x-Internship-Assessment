@@ -1,4 +1,3 @@
-// src/firebase.ts  (or firebase/config.ts)
 import { initializeApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 

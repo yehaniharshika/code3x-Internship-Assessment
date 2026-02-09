@@ -1,6 +1,5 @@
-// src/pages/LoginPage.tsx
 import React, { useState, useEffect } from 'react';
-import { Grid, Box, Typography } from '@mui/material';
+import {Box, Typography } from '@mui/material';
 import LoginForm from '../components/LoginForm';
 
 import illustration1 from '../assets/login-bg-01.png';
@@ -54,7 +53,7 @@ const LoginPage: React.FC = () => {
         </Box>
       </Box>
 
-      {/* RIGHT - Illustration side */}
+      {/* RIGHT - Image side */}
       <Box
         sx={{
           width: { xs: '0%', md: '60%' },
@@ -77,12 +76,12 @@ const LoginPage: React.FC = () => {
             alignItems: 'center',
             justifyContent: 'center',
             backgroundColor: '#ebf5e0',
-            borderRadius: { md: '20px  20px 20px 20px' }, // rounded only left side
+            borderRadius: { md: '20px  20px 20px 20px' },
             p: { md: 6, lg: 8 },
             boxShadow: '0 8px 32px rgba(0,0,0,0.1)',
           }}
         >
-          {/* Image container - full available space */}
+          
           <Box
             sx={{
               width: '100%',
@@ -105,7 +104,7 @@ const LoginPage: React.FC = () => {
             />
           </Box>
 
-          {/* Dots */}
+          {/* Image Navigation Dots */}
           <Box sx={{ display: 'flex', gap: 1.5, mb: 3 }}>
             {images.map((_, idx) => (
               <Box
@@ -123,7 +122,6 @@ const LoginPage: React.FC = () => {
             ))}
           </Box>
 
-          {/* Bottom text */}
           <Typography
             sx={{
               fontSize: '16px',

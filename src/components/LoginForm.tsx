@@ -45,7 +45,6 @@ const LoginForm: React.FC = () => {
 
   const onSubmit = (data: FormData) => {
     console.log("Form submitted:", data);
-    // Simulate login success - redirect to token page (no backend)
     navigate("/token");
   };
 
@@ -53,12 +52,11 @@ const LoginForm: React.FC = () => {
     try {
       const result = await signInWithGoogle();
       const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = await result.user.getIdToken(); // or credential?.accessToken
+      const token = await result.user.getIdToken(); 
       console.log("Google login success, token:", token);
       navigate("/token");
     } catch (error: any) {
       console.error("Google login failed:", error.code, error.message);
-      // You can show toast/alert here later
     }
   };
 
@@ -75,10 +73,10 @@ const LoginForm: React.FC = () => {
           color: "black",
           mb: 1,
           fontSize: {
-            xs: "24px", // mobile (very small screens)
-            sm: "28px", // small tablets
-            md: "23px", // desktop/tablet
-            lg: "34px", // larger screens (optional)
+            xs: "24px", 
+            sm: "28px",
+            md: "23px",
+            lg: "34px", 
           },
           fontFamily: "Poppins, sans-serif",
         }}
