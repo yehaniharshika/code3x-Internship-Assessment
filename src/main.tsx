@@ -1,24 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App.tsx';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import './index.css'; // If you add global styles
+import './index.css';
+import App from './App';
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#000000', // Black for button
-    },
-    background: {
-      default: '#F0F7F4', // Light green
-    },
-  },
-});
-
-ReactDOM.createRoot(document.getElementById('root')!).render(
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+root.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
+    <App />
   </React.StrictMode>
 );

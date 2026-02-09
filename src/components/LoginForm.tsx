@@ -14,6 +14,9 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useNavigate } from "react-router-dom";
+import { signInWithGoogle } from "../firebase/firebase";
+import { GoogleAuthProvider } from "firebase/auth/web-extension";
 
 interface FormData {
   username: string;
@@ -38,24 +41,30 @@ const LoginForm: React.FC = () => {
   } = useForm<FormData>({
     resolver: yupResolver(schema),
   });
+  const navigate = useNavigate();
 
   const onSubmit = (data: FormData) => {
     console.log("Form submitted:", data);
+    // Simulate login success - redirect to token page (no backend)
+    navigate("/token");
   };
 
   const handleGoogleLogin = async () => {
-    console.log("Google login clicked");
+    try {
+      const result = await signInWithGoogle();
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = await result.user.getIdToken(); // or credential?.accessToken
+      console.log("Google login success, token:", token);
+      navigate("/token");
+    } catch (error: any) {
+      console.error("Google login failed:", error.code, error.message);
+      // You can show toast/alert here later
+    }
   };
 
   return (
     <Box
-      sx={{
-        maxWidth: 500,
-        width: "100%",
-        mx: "auto",
-        marginRight: "-1px",
-        p: 4,
-      }}
+      sx={{ width: "100%", maxWidth: "420px", mx: "auto", p: { xs: 2, sm: 1 }}}
     >
       <Typography
         variant="h4"
@@ -65,19 +74,28 @@ const LoginForm: React.FC = () => {
           fontWeight: 800,
           color: "black",
           mb: 1,
-          fontSize: "32px",
+          fontSize: {
+            xs: "24px", // mobile (very small screens)
+            sm: "28px", // small tablets
+            md: "23px", // desktop/tablet
+            lg: "34px", // larger screens (optional)
+          },
           fontFamily: "Poppins, sans-serif",
         }}
       >
         Welcome back!
       </Typography>
-
       <Typography
         variant="body1"
         sx={{
           color: "black",
           mb: 4,
-          fontSize: "14px",
+          fontSize: {
+            xs: "13px",
+            sm: "13px",
+            md: "13px",
+            lg: "14px",
+          },
           lineHeight: 1.6,
           textAlign: "center",
           fontFamily: "Poppins, sans-serif",
@@ -86,7 +104,6 @@ const LoginForm: React.FC = () => {
         Simplify your workflow and boost your productivity with Tuga's App. Get
         started for free.
       </Typography>
-
       <form onSubmit={handleSubmit(onSubmit)}>
         <Controller
           name="username"
@@ -105,32 +122,22 @@ const LoginForm: React.FC = () => {
                 borderColor: "black",
                 "& .MuiOutlinedInput-root": {
                   color: "black",
-                  paddingLeft: "15px", // Added left padding
-                  "& fieldset": {
-                    borderColor: "black",
-                    borderRadius: 10,
-                  },
-                  "&:hover fieldset": {
-                    borderColor: "rgba(0, 0, 0, 0.3)",
-                  },
-                  "&.Mui-focused fieldset": {
-                    borderColor: "black",
-                  },
+                  paddingLeft: "15px",
+                  "& fieldset": { borderColor: "black", borderRadius: 10 },
+                  "&:hover fieldset": { borderColor: "rgba(0, 0, 0, 0.3)" },
+                  "&.Mui-focused fieldset": { borderColor: "black" },
                 },
-                "& .MuiInputBase-input": {
-                  paddingLeft: "15px", // Left padding for input text
-                },
+                "& .MuiInputBase-input": { paddingLeft: "15px" },
                 "& .MuiInputBase-input::placeholder": {
                   color: "rgba(0, 0, 0, 0.7)",
                   opacity: 1,
                   fontFamily: "Poppins, sans-serif",
-                  fontSize: "13px", // Reduced to 11px
+                  fontSize: "13px",
                 },
               }}
             />
           )}
         />
-
         <Controller
           name="password"
           control={control}
@@ -149,32 +156,22 @@ const LoginForm: React.FC = () => {
                 borderRadius: 10,
                 "& .MuiOutlinedInput-root": {
                   color: "black",
-                  paddingLeft: "15px", // Added left padding
-                  "& fieldset": {
-                    borderColor: "black",
-                    borderRadius: 10,
-                  },
-                  "&:hover fieldset": {
-                    borderColor: "rgba(0, 0, 0, 0.3)",
-                  },
-                  "&.Mui-focused fieldset": {
-                    borderColor: "black",
-                  },
+                  paddingLeft: "15px",
+                  "& fieldset": { borderColor: "black", borderRadius: 10 },
+                  "&:hover fieldset": { borderColor: "rgba(0, 0, 0, 0.3)" },
+                  "&.Mui-focused fieldset": { borderColor: "black" },
                 },
-                "& .MuiInputBase-input": {
-                  paddingLeft: "15px", // Left padding for input text
-                },
+                "& .MuiInputBase-input": { paddingLeft: "15px" },
                 "& .MuiInputBase-input::placeholder": {
                   color: "rgba(0, 0, 0, 0.7)",
                   opacity: 1,
                   fontFamily: "Poppins, sans-serif",
-                  fontSize: "13px", // Reduced to 11px
+                  fontSize: "13px",
                 },
               }}
             />
           )}
         />
-
         <Link
           href="#"
           underline="hover"
@@ -185,14 +182,11 @@ const LoginForm: React.FC = () => {
             mb: 3,
             color: "rgba(0, 0, 0, 0.9)",
             fontSize: "14px",
-            "&:hover": {
-              color: "black",
-            },
+            "&:hover": { color: "black" },
           }}
         >
           Forgot Password?
         </Link>
-
         <Button
           variant="contained"
           fullWidth
@@ -207,27 +201,21 @@ const LoginForm: React.FC = () => {
             borderRadius: 10,
             fontFamily: "Poppins, sans-serif",
             mb: 3,
-            "&:hover": {
-              bgcolor: "#1a1a1a",
-            },
+            "&:hover": { bgcolor: "#1a1a1a" },
           }}
         >
           Login
         </Button>
       </form>
-
       <Divider
         sx={{
-          color: "rgba(255, 255, 255, 0.7)",
+          color: "black",
           fontSize: "14px",
-          "&::before, &::after": {
-            borderColor: "rgba(255, 255, 255, 0.3)",
-          },
+          "&::before, &::after": { borderColor: "rgba(0, 0, 0, 0.3)" },
         }}
       >
         or continue with
       </Divider>
-
       <Box sx={{ display: "flex", justifyContent: "center", gap: 2, mt: 2 }}>
         <IconButton
           onClick={handleGoogleLogin}
@@ -236,9 +224,7 @@ const LoginForm: React.FC = () => {
             color: "white",
             width: 48,
             height: 48,
-            "&:hover": {
-              bgcolor: "#1a1a1a",
-            },
+            "&:hover": { bgcolor: "#1a1a1a" },
           }}
         >
           <GoogleIcon />
@@ -249,9 +235,7 @@ const LoginForm: React.FC = () => {
             color: "white",
             width: 48,
             height: 48,
-            "&:hover": {
-              bgcolor: "#1a1a1a",
-            },
+            "&:hover": { bgcolor: "#1a1a1a" },
           }}
         >
           <AppleIcon />
@@ -262,15 +246,12 @@ const LoginForm: React.FC = () => {
             color: "white",
             width: 48,
             height: 48,
-            "&:hover": {
-              bgcolor: "#1a1a1a",
-            },
+            "&:hover": { bgcolor: "#1a1a1a" },
           }}
         >
           <FacebookIcon />
         </IconButton>
       </Box>
-
       <Typography
         variant="body2"
         sx={{
@@ -288,9 +269,7 @@ const LoginForm: React.FC = () => {
             color: "#8cb85b",
             fontWeight: 500,
             textDecoration: "none",
-            "&:hover": {
-              color: "rgba(0, 0, 0, 0.8)",
-            },
+            "&:hover": { color: "rgba(0, 0, 0, 0.8)" },
           }}
         >
           Register now
