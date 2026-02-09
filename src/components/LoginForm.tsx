@@ -50,36 +50,36 @@ const LoginForm: React.FC = () => {
   return (
     <Box
       sx={{
-        maxWidth: 400,
+        maxWidth: 500,
         width: "100%",
         mx: "auto",
-        p: 3,
+        marginRight: "-1px",
+        p: 4,
       }}
     >
-      {/* Welcome Title */}
       <Typography
         variant="h4"
+        gutterBottom
         sx={{
-          textAlign: "left",
-          fontWeight: 700,
-          color: "#000000",
+          textAlign: "center",
+          fontWeight: 800,
+          color: "black",
           mb: 1,
-          fontSize: "36px",
+          fontSize: "32px",
           fontFamily: "Poppins, sans-serif",
         }}
       >
         Welcome back!
       </Typography>
 
-      {/* Subtitle */}
       <Typography
         variant="body1"
         sx={{
-          color: "#666666",
+          color: "black",
           mb: 4,
           fontSize: "14px",
           lineHeight: 1.6,
-          textAlign: "left",
+          textAlign: "center",
           fontFamily: "Poppins, sans-serif",
         }}
       >
@@ -87,9 +87,7 @@ const LoginForm: React.FC = () => {
         started for free.
       </Typography>
 
-      {/* Form */}
       <form onSubmit={handleSubmit(onSubmit)}>
-        {/* Username Field */}
         <Controller
           name="username"
           control={control}
@@ -102,39 +100,37 @@ const LoginForm: React.FC = () => {
               error={!!errors.username}
               helperText={errors.username?.message}
               sx={{
-                mb: 2,
+                bgcolor: "rgba(255, 255, 255, 0.2)",
+                borderRadius: 10,
+                borderColor: "black",
                 "& .MuiOutlinedInput-root": {
-                  borderRadius: "25px",
-                  backgroundColor: "#ffffff",
-                  fontFamily: "Poppins, sans-serif",
-                  fontSize: "14px",
+                  color: "black",
+                  paddingLeft: "15px", // Added left padding
                   "& fieldset": {
-                    borderColor: "#e0e0e0",
+                    borderColor: "black",
+                    borderRadius: 10,
                   },
                   "&:hover fieldset": {
-                    borderColor: "#cccccc",
+                    borderColor: "rgba(0, 0, 0, 0.3)",
                   },
                   "&.Mui-focused fieldset": {
-                    borderColor: "#999999",
-                    borderWidth: "1px",
+                    borderColor: "black",
                   },
                 },
                 "& .MuiInputBase-input": {
-                  padding: "14px 20px",
-                  fontFamily: "Poppins, sans-serif",
+                  paddingLeft: "15px", // Left padding for input text
                 },
                 "& .MuiInputBase-input::placeholder": {
-                  color: "#999999",
+                  color: "rgba(0, 0, 0, 0.7)",
                   opacity: 1,
                   fontFamily: "Poppins, sans-serif",
-                  fontSize: "14px",
+                  fontSize: "13px", // Reduced to 11px
                 },
               }}
             />
           )}
         />
 
-        {/* Password Field */}
         <Controller
           name="password"
           control={control}
@@ -148,39 +144,37 @@ const LoginForm: React.FC = () => {
               error={!!errors.password}
               helperText={errors.password?.message}
               sx={{
-                mb: 1,
+                bgcolor: "rgba(255, 255, 255, 0.2)",
+                borderColor: "black",
+                borderRadius: 10,
                 "& .MuiOutlinedInput-root": {
-                  borderRadius: "25px",
-                  backgroundColor: "#ffffff",
-                  fontFamily: "Poppins, sans-serif",
-                  fontSize: "14px",
+                  color: "black",
+                  paddingLeft: "15px", // Added left padding
                   "& fieldset": {
-                    borderColor: "#e0e0e0",
+                    borderColor: "black",
+                    borderRadius: 10,
                   },
                   "&:hover fieldset": {
-                    borderColor: "#cccccc",
+                    borderColor: "rgba(0, 0, 0, 0.3)",
                   },
                   "&.Mui-focused fieldset": {
-                    borderColor: "#999999",
-                    borderWidth: "1px",
+                    borderColor: "black",
                   },
                 },
                 "& .MuiInputBase-input": {
-                  padding: "14px 20px",
-                  fontFamily: "Poppins, sans-serif",
+                  paddingLeft: "15px", // Left padding for input text
                 },
                 "& .MuiInputBase-input::placeholder": {
-                  color: "#999999",
+                  color: "rgba(0, 0, 0, 0.7)",
                   opacity: 1,
                   fontFamily: "Poppins, sans-serif",
-                  fontSize: "14px",
+                  fontSize: "13px", // Reduced to 11px
                 },
               }}
             />
           )}
         />
 
-        {/* Forgot Password Link */}
         <Link
           href="#"
           underline="hover"
@@ -189,36 +183,32 @@ const LoginForm: React.FC = () => {
             textAlign: "right",
             mt: 1,
             mb: 3,
-            color: "#666666",
-            fontSize: "13px",
-            fontFamily: "Poppins, sans-serif",
+            color: "rgba(0, 0, 0, 0.9)",
+            fontSize: "14px",
             "&:hover": {
-              color: "#000000",
+              color: "black",
             },
           }}
         >
           Forgot Password?
         </Link>
 
-        {/* Login Button */}
         <Button
           variant="contained"
           fullWidth
           type="submit"
           sx={{
-            bgcolor: "#000000",
-            color: "#ffffff",
+            bgcolor: "black",
+            color: "white",
             py: 1.5,
             textTransform: "none",
             fontSize: "16px",
-            fontWeight: 600,
-            borderRadius: "25px",
+            fontWeight: 500,
+            borderRadius: 10,
             fontFamily: "Poppins, sans-serif",
             mb: 3,
-            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
             "&:hover": {
               bgcolor: "#1a1a1a",
-              boxShadow: "0 6px 16px rgba(0, 0, 0, 0.2)",
             },
           }}
         >
@@ -226,74 +216,67 @@ const LoginForm: React.FC = () => {
         </Button>
       </form>
 
-      {/* Divider */}
       <Divider
         sx={{
-          color: "#999999",
-          fontSize: "13px",
-          fontFamily: "Poppins, sans-serif",
-          mb: 3,
+          color: "rgba(255, 255, 255, 0.7)",
+          fontSize: "14px",
           "&::before, &::after": {
-            borderColor: "#e0e0e0",
+            borderColor: "rgba(255, 255, 255, 0.3)",
           },
         }}
       >
         or continue with
       </Divider>
 
-      {/* Social Login Buttons */}
-      <Box sx={{ display: "flex", justifyContent: "center", gap: 2, mb: 4 }}>
+      <Box sx={{ display: "flex", justifyContent: "center", gap: 2, mt: 2 }}>
         <IconButton
           onClick={handleGoogleLogin}
           sx={{
-            bgcolor: "#000000",
-            color: "#ffffff",
-            width: 50,
-            height: 50,
-            borderRadius: "50%",
+            bgcolor: "black",
+            color: "white",
+            width: 48,
+            height: 48,
             "&:hover": {
               bgcolor: "#1a1a1a",
             },
           }}
         >
-          <GoogleIcon sx={{ fontSize: 22 }} />
+          <GoogleIcon />
         </IconButton>
         <IconButton
           sx={{
-            bgcolor: "#000000",
-            color: "#ffffff",
-            width: 50,
-            height: 50,
-            borderRadius: "50%",
+            bgcolor: "black",
+            color: "white",
+            width: 48,
+            height: 48,
             "&:hover": {
               bgcolor: "#1a1a1a",
             },
           }}
         >
-          <AppleIcon sx={{ fontSize: 22 }} />
+          <AppleIcon />
         </IconButton>
         <IconButton
           sx={{
-            bgcolor: "#000000",
-            color: "#ffffff",
-            width: 50,
-            height: 50,
-            borderRadius: "50%",
+            bgcolor: "black",
+            color: "white",
+            width: 48,
+            height: 48,
             "&:hover": {
               bgcolor: "#1a1a1a",
             },
           }}
         >
-          <FacebookIcon sx={{ fontSize: 22 }} />
+          <FacebookIcon />
         </IconButton>
       </Box>
 
-      {/* Register Link */}
       <Typography
         variant="body2"
         sx={{
+          mt: 10,
           textAlign: "center",
-          color: "#666666",
+          color: "black",
           fontSize: "14px",
           fontFamily: "Poppins, sans-serif",
         }}
@@ -302,11 +285,11 @@ const LoginForm: React.FC = () => {
         <Link
           href="#"
           sx={{
-            color: "#8BC34A",
-            fontWeight: 600,
+            color: "#8cb85b",
+            fontWeight: 500,
             textDecoration: "none",
             "&:hover": {
-              textDecoration: "underline",
+              color: "rgba(0, 0, 0, 0.8)",
             },
           }}
         >

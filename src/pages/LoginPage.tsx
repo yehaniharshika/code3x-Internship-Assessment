@@ -3,15 +3,14 @@ import { Grid, Box, Typography } from "@mui/material";
 import LoginForm from "../components/LoginForm";
 
 // Import multiple images for rotation
-import illustration1 from "../assets/login-bg-01.png";
-// import illustration2 from "../assets/login-bg-02.png";
-// import illustration3 from "../assets/login-bg-03.png";
+import illustration1 from "../assets/login-bg-02.png";
+import illustration2 from "../assets/login-bg-01.png";
+import illustration3 from "../assets/login-bg-03.png";
 
-// If you only have one image, duplicate it for now
 const images = [
   illustration1,
-  illustration1, // Replace with illustration2
-  illustration1, // Replace with illustration3
+  illustration2,
+  illustration3, 
 ];
 
 const LoginPage: React.FC = () => {
@@ -21,7 +20,7 @@ const LoginPage: React.FC = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 4000); // Change image every 4 seconds
+    }, 3000); // Change image every 3 seconds
 
     return () => clearInterval(interval);
   }, []);
@@ -57,7 +56,7 @@ const LoginPage: React.FC = () => {
           display: { xs: "none", md: "flex" },
           alignItems: "center",
           justifyContent: "center",
-          bgcolor: "#ebf5e0", // Changed from red to green
+          bgcolor: "#ffffff", // Changed from red to green
           flexDirection: "column",
           height: "100vh",
           width: "60%",
@@ -66,17 +65,18 @@ const LoginPage: React.FC = () => {
       >
         <Box
           sx={{
-            width: "90%", // Increased from 60% to make it bigger
-            maxWidth: "850px",
+            width: "98%", // Increased from 60% to make it bigger
+            maxWidth: "1000px",
             textAlign: "center",
-            backgroundColor: "#ffffff", // White background for image container
+            backgroundColor: "#ebf5e0 ", // White background for image container
             borderRadius: "24px",
-            p: 4,
+            p: 3,
             boxShadow: "0 4px 20px rgba(0, 0, 0, 0.08)",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
+            marginRight: "5px", // Remove right margin
           }}
         >
           {/* Image with fade animation */}
@@ -118,7 +118,7 @@ const LoginPage: React.FC = () => {
                   width: 10,
                   height: 10,
                   borderRadius: "50%",
-                  bgcolor: index === currentImageIndex ? "#8BC34A" : "#d0d0d0",
+                  bgcolor: index === currentImageIndex ? "black" : "#d0d0d0",
                   transition: "all 0.3s ease",
                   cursor: "pointer",
                 }}
@@ -133,12 +133,12 @@ const LoginPage: React.FC = () => {
             sx={{
               fontWeight: 400,
               color: "#2D2D2D",
-              fontSize: "18px",
+              fontSize: "16px",
               lineHeight: 1.6,
               fontFamily: "Poppins, sans-serif",
             }}
           >
-            Make your work easier and organized with{" "}
+            Make your work easier and organized <br /> with{" "}
             <Box component="span" sx={{ fontWeight: 700 }}>
               Tuga's App
             </Box>
