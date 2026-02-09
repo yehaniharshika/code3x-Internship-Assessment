@@ -1,167 +1,147 @@
-import React, { useState, useEffect } from "react";
-import { Grid, Box, Typography } from "@mui/material";
-import LoginForm from "../components/LoginForm";
+// src/pages/LoginPage.tsx
+import React, { useState, useEffect } from 'react';
+import { Grid, Box, Typography } from '@mui/material';
+import LoginForm from '../components/LoginForm';
 
-// Import multiple images for rotation
-import illustration1 from "../assets/login-bg-02.png";
-import illustration2 from "../assets/login-bg-01.png";
-import illustration3 from "../assets/login-bg-03.png";
+import illustration1 from '../assets/login-bg-01.png';
+import illustration2 from '../assets/login-bg-02.png';
+import illustration3 from '../assets/login-bg-03.png';
 
-const images = [
-  illustration1,
-  illustration2,
-  illustration3, 
-];
+const images = [illustration1, illustration2, illustration3];
 
 const LoginPage: React.FC = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // Auto-rotate images every 4 seconds
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 3000); // Change image every 3 seconds
-
+      setCurrentImageIndex((prev) => (prev + 1) % images.length);
+    }, 4000);
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <Grid
-      container
+    <Box
       sx={{
-        height: "100vh",
-        width: "100%",
-        m: 0,
-        p: 0,
+        height: '100vh',
+        width: '100%',
+        display: 'flex',
+        overflow: 'hidden',
+        margin: 0,
+        padding: 0,
       }}
     >
-      {/* Left side - Login Form with white background */}
-      <Grid
+      {/* LEFT - Form side */}
+      <Box
         sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          bgcolor: "#ffffff",
-          p: { xs: 3, md: 6 },
-          height: "100vh",
-          width: "40%",
-        }}
-      >
-        <LoginForm />
-      </Grid>
-
-      {/* Right side - Illustration with green background */}
-      <Grid
-        sx={{
-          display: { xs: "none", md: "flex" },
-          alignItems: "center",
-          justifyContent: "center",
-          bgcolor: "#ffffff", // Changed from red to green
-          flexDirection: "column",
-          height: "100vh",
-          width: "60%",
-          p: 4, // Padding around the content
+          width: { xs: '100%', md: '40%' },
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          bgcolor: '#ffffff', 
+          px: { xs: 3, sm: 6, md: 8, lg: 10 },
+          py: { xs: 4, md: 6 },
+          height: '100%',
         }}
       >
         <Box
           sx={{
-            width: "98%", // Increased from 60% to make it bigger
-            maxWidth: "1000px",
-            textAlign: "center",
-            backgroundColor: "#ebf5e0 ", // White background for image container
-            borderRadius: "24px",
-            p: 3,
-            boxShadow: "0 4px 20px rgba(0, 0, 0, 0.08)",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            marginRight: "5px", // Remove right margin
+            width: '100%',
+            maxWidth: '480px',
+            mx: 'auto',
           }}
         >
-          {/* Image with fade animation */}
+          <LoginForm />
+        </Box>
+      </Box>
+
+      {/* RIGHT - Illustration side */}
+      <Box
+        sx={{
+          width: { xs: '0%', md: '60%' },
+          display: { xs: 'none', md: 'flex' },
+          alignItems: 'center',
+          justifyContent: 'center',
+          bgcolor: '#ffffff',
+          height: '100%',
+          overflow: 'hidden',
+          p: { md: 2, lg: 3 },
+          
+        }}
+      >
+        <Box
+          sx={{
+            width: '100%',
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: '#ebf5e0',
+            borderRadius: { md: '20px  20px 20px 20px' }, // rounded only left side
+            p: { md: 6, lg: 8 },
+            boxShadow: '0 8px 32px rgba(0,0,0,0.1)',
+          }}
+        >
+          {/* Image container - full available space */}
           <Box
             sx={{
-              width: "100%",
-              height: "450px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              mb: 3,
-              position: "relative",
+              width: '100%',
+              height: '65%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              overflow: 'hidden',
+              mb: 4,
             }}
           >
             <img
               src={images[currentImageIndex]}
               alt="Productivity illustration"
               style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "contain",
-                animation: "fadeIn 1s ease-in-out",
+                width: '100%',
+                height: '100%',
+                objectFit: 'contain',
               }}
             />
           </Box>
 
-          {/* Dots indicator for image carousel */}
-          <Box
-            sx={{
-              display: "flex",
-              gap: 1.5,
-              mb: 3,
-            }}
-          >
-            {images.map((_, index) => (
+          {/* Dots */}
+          <Box sx={{ display: 'flex', gap: 1.5, mb: 3 }}>
+            {images.map((_, idx) => (
               <Box
-                key={index}
+                key={idx}
                 sx={{
                   width: 10,
                   height: 10,
-                  borderRadius: "50%",
-                  bgcolor: index === currentImageIndex ? "black" : "#d0d0d0",
-                  transition: "all 0.3s ease",
-                  cursor: "pointer",
+                  borderRadius: '50%',
+                  bgcolor: idx === currentImageIndex ? 'black' : '#d0d0d0',
+                  transition: 'all 0.3s ease',
+                  cursor: 'pointer',
                 }}
-                onClick={() => setCurrentImageIndex(index)}
+                onClick={() => setCurrentImageIndex(idx)}
               />
             ))}
           </Box>
 
-          {/* Text below illustration */}
+          {/* Bottom text */}
           <Typography
-            variant="h6"
             sx={{
+              fontSize: '16px',
+              color: '#2D2D2D',
+              textAlign: 'center',
+              fontFamily: 'Poppins, sans-serif',
               fontWeight: 400,
-              color: "#2D2D2D",
-              fontSize: "16px",
               lineHeight: 1.6,
-              fontFamily: "Poppins, sans-serif",
+              px: 4,
+              maxWidth: '85%',
             }}
           >
-            Make your work easier and organized <br /> with{" "}
-            <Box component="span" sx={{ fontWeight: 700 }}>
-              Tuga's App
-            </Box>
+            Make your work easier and organized <br />
+            with <Box component="span" sx={{ fontWeight: 700 }}>Tuga's App</Box>
           </Typography>
         </Box>
-
-        {/* CSS Animation for fade effect */}
-        <style>
-          {`
-            @keyframes fadeIn {
-              from {
-                opacity: 0;
-                transform: scale(0.95);
-              }
-              to {
-                opacity: 1;
-                transform: scale(1);
-              }
-            }
-          `}
-        </style>
-      </Grid>
-    </Grid>
+      </Box>
+    </Box>
   );
 };
 
